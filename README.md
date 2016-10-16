@@ -96,4 +96,5 @@ To check the values of the parameters below, go to **Merchant Administration Pan
 
 <!--images:-->
 
+
 [img2]: https://github.com/payscout/prestashop/blob/master/save_config.png

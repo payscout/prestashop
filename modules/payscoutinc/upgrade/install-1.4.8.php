@@ -32,26 +32,24 @@ function upgrade_module_1_4_8($object)
 $upgrade_version = '1.4.8';
 $object->upgrade_detail[$upgrade_version] = array();
 // Variables name for client id, client username, client password and client token have now the currency
-if(Configuration::get('PAYSCOUT_INC_CLIENT_ID') && Configuration::get('PAYSCOUT_INC_CLIENT_USERNAME') && Configuration::get('PAYSCOUT_INC_CLIENT_PASSWORD') && Configuration::get('PAYSCOUT_INC_CLIENT_TOKEN'))
+if(Configuration::get('PAYSCOUT_INC_CLIENT_USERNAME') && Configuration::get('PAYSCOUT_INC_CLIENT_PASSWORD') && Configuration::get('PAYSCOUT_INC_CLIENT_TOKEN'))
 {
 $currencies = Currency::getCurrencies(false, true);
 foreach ($currencies as $currency)
 {
 if(in_array($currency['iso_code'], $object->inc_available_currencies))
 {
-$configuration_client_id_name = 'PAYSCOUT_INC_CLIENT_ID'.$currency['iso_code'];
 $configuration_client_username_name = 'PAYSCOUT_INC_CLIENT_USERNAME'.$currency['iso_code'];
 $configuration_client_password_name = 'PAYSCOUT_INC_CLIENT_PASSWORD'.$currency['iso_code'];
 $configuration_client_token_name = 'PAYSCOUT_INC_CLIENT_TOKEN'.$currency['iso_code'];
 
-Configuration::updateValue($configuration_client_id_name, Configuration::get('PAYSCOUT_INC_CLIENT_ID'));
 Configuration::updateValue($configuration_client_username_name, Configuration::get('PAYSCOUT_INC_CLIENT_USERNAME'));
 Configuration::updateValue($configuration_client_password_name, Configuration::get('PAYSCOUT_INC_CLIENT_PASSWORD'));
 Configuration::updateValue($configuration_client_token_name, Configuration::get('PAYSCOUT_INC_CLIENT_TOKEN'));
 }
 }
 }
-Configuration::deleteByName('PAYSCOUT_INC_CLIENT_ID');
+
 Configuration::deleteByName('PAYSCOUT_INC_CLIENT_USERNAME');
 Configuration::deleteByName('PAYSCOUT_INC_CLIENT_PASSWORD');
 Configuration::deleteByName('PAYSCOUT_INC_CLIENT_TOKEN');

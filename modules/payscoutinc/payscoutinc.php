@@ -102,8 +102,7 @@ class PayscoutInc extends PaymentModule
 		$currencies = Currency::getCurrencies(false, true);
 		foreach ($currencies as $currency)
 			if (in_array($currency['iso_code'], $this->aim_available_currencies))
-			{
-				Configuration::deleteByName('PAYSCOUT_INC_CLIENT_ID_'.$currency['iso_code']);
+			{				
 				Configuration::deleteByName('PAYSCOUT_INC_CLIENT_USERNAME_'.$currency['iso_code']);
 				Configuration::deleteByName('PAYSCOUT_INC_CLIENT_PASSWORD_'.$currency['iso_code']);
 				Configuration::deleteByName('PAYSCOUT_INC_CLIENT_TOKEN_'.$currency['iso_code']);
@@ -170,10 +169,8 @@ class PayscoutInc extends PaymentModule
 
 			// Updating credentials for each active currency 
 			foreach ($_POST as $key => $value)
-			{
-				if (strstr($key, 'payscoutinc_client_id_'))
-					Configuration::updateValue('PAYSCOUT_INC_CLIENT_ID_'.str_replace('payscoutinc_client_id_', '', $key), $value);
-				elseif (strstr($key, 'payscoutinc_client_username_'))
+			{				
+				if (strstr($key, 'payscoutinc_client_username_'))
 					Configuration::updateValue('PAYSCOUT_INC_CLIENT_USERNAME_'.str_replace('payscoutinc_client_username_', '', $key), $value);
 				elseif (strstr($key, 'payscoutinc_client_password_'))
 					Configuration::updateValue('PAYSCOUT_INC_CLIENT_PASSWORD_'.str_replace('payscoutinc_client_password_', '', $key), $value);
@@ -209,12 +206,10 @@ class PayscoutInc extends PaymentModule
 		foreach ($currencies as $currency)
 		{
 			if (in_array($currency['iso_code'], $this->inc_available_currencies))
-			{
-				$configuration_client_id_name = 'PAYSCOUT_INC_CLIENT_ID_'.$currency['iso_code'];
+			{				
  				$configuration_client_username_name = 'PAYSCOUT_INC_CLIENT_USERNAME_'.$currency['iso_code'];
 				$configuration_client_password_name = 'PAYSCOUT_INC_CLIENT_PASSWORD_'.$currency['iso_code'];
-				$configuration_client_token_name = 'PAYSCOUT_INC_CLIENT_TOKEN_'.$currency['iso_code'];
-				$this->context->smarty->assign($configuration_client_id_name, Configuration::get($configuration_client_id_name));
+				$configuration_client_token_name = 'PAYSCOUT_INC_CLIENT_TOKEN_'.$currency['iso_code'];				
 				$this->context->smarty->assign($configuration_client_username_name, Configuration::get($configuration_client_username_name));
 				$this->context->smarty->assign($configuration_client_password_name, Configuration::get($configuration_client_password_name));
 				$this->context->smarty->assign($configuration_client_token_name, Configuration::get($configuration_client_token_name));

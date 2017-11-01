@@ -85,7 +85,6 @@ To check the values of the parameters below, go to **Merchant Administration Pan
 
 | Parameter | Description | 
 |:---------:|:-----------:|
-|Client ID|Unique ID Provided by payscout|
 |Client Username|Merchant login username|
 |Client Password|Merchant password|
 |Client Token|Client token provided by payscout|
